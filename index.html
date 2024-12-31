@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maha Portfolio</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="fov.png" type="seo.png">
+    <style>
+        /* تنسيق عام */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #000000;
+            color: #fff;
+        }
+
+        /* شريط التنقل */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: 0 10px;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 50px;
+            background-color: transparent;
+            text-decoration: none;
+            color: #f9f3f3;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #a3acef97;
+            color: #000;
+        }
+
+        /* تنسيق الأقسام */
+        .section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+
+        #section1 { 
+            background-color: #000000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #section2 { background-color: #000000; }
+        #section3 { background-color: #000000; }
+        #section4 { background-color: #000000; }
+
+        /* الأشرطة المتحركة */
+        .animated-bars {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-start;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .bar {
+            width: 0;
+            height: 10px;
+            border-radius: 5px;
+            animation: slideIn 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* حركات الأشرطة */
+        @keyframes slideIn {
+            0% {
+                width: 0;
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            100% {
+                width: 100%;
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* تأخير لكل شريط */
+        .bar:nth-child(1) { animation-delay: 0.2s; background-color: #ff583358; }
+        .bar:nth-child(2) { animation-delay: 0.4s; background-color: #33ff5861; }
+        .bar:nth-child(3) { animation-delay: 0.6s; background-color: #5833ffaa; }
+        .bar:nth-child(4) { animation-delay: 0.8s; background-color: #ff33a0db; }
+        .bar:nth-child(5) { animation-delay: 1s; background-color: #33FFF5; }
+
+        /* نص القسم */
+        .content {
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        .content h1 {
+            font-size: 48px;
+            margin: 0;
+        }
+
+        .content p {
+            font-size: 20px;
+            margin: 10px 0 30px;
+        }
+
+
+        .projects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            
+        }
+
+        .project-card {
+            background: linear-gradient(15deg, #e684f9ac, #a3acef);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-110px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-card h3 {
+            margin: 0;
+            font-size: 24px;
+            color: #000;
+        }
+
+        .project-card p {
+            margin: 10px 0 20px;
+            font-size: 16px;
+            color: #444;
+        }
+
+        .project-card a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #333;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .project-card a:hover {
+            background-color: #000;
+        }
+
+
+        .links-container {
+            text-align: center;
+        }
+
+        .links-container h2 {
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: #cccccc;
+        }
+
+        .links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 40px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .link-item:hover {
+            background-color: #333;
+            border-color: #888;
+        }
+
+        #section3 {
+    display: flex; /* تفعيل Flexbox */
+    flex-direction: column; /* جعل الاتجاه عمودياً */
+    align-items: center; /* محاذاة العناصر في المنتصف */
+    text-align: center; /* جعل النصوص في الوسط */
+    gap: 20px; /* مسافة بين العناصر */
+}
+
+#section2 {
+    display: flex; /* تفعيل Flexbox */
+    flex-direction: column; /* جعل الاتجاه عمودياً */
+    align-items: center; /* محاذاة العناصر في المنتصف */
+    text-align: center; /* جعل النصوص في الوسط */
+    gap: 20px; /* مسافة بين العناصر */
+}
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav>
+        <ul>
+            <li><a href="#section1">Main </a></li>
+            <li><a href="#section2">Who I'm ?</a></li>
+            <li><a href="#section3">Projects </a></li>
+            <li><a href="#section4">Contact </a></li>
+        </ul>
+    </nav>
+
+    <!-- الأقسام -->
+    <div id="section1" class="section">
+        <div class="content">
+            <h1>Maha Althwab</h1>
+            <p>Frontend Developer & UI/UX Designer</p>
+        </div>
+        <div class="animated-bars">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+
+
+
+    <div id="section2" class="section">
+      <div class="me">
+          <h1>Hi, I'm Maha</h1>
+          <p> UIUX Designer , Frontend Developer from Saudi Arabia, 
+            Riyadh. I enjoy creating tools and enhancing user experiences through websites & Apps.
+             In the modern world, websites are indispensable. I firmly believe that design and 
+             technology can bring
+              convenience to users and a different meaning to the world. Additionally, 
+              I believe in the power of 
+              simplicity.</p>
+      </div>
+    
+  
+  </div>
+
+
+
+  <div id="section3" class="section">
+    <h1>Stuff I've Worked On</h1>
+   
+    <div class="projects-container">
+        <div class="project-card">
+            <h3>Restaurant-App</h3>
+            <p>Figma</p>
+            <a href="https://www.behance.net/gallery/211178957/Restaurant-app-UI/modules/1200358745" target="_blank">View Project</a>
+        </div>
+        <div class="project-card">
+            <h3>To Do-App</h3>
+            <p>Figma</p>
+            <a href="https://www.behance.net/gallery/209780181/ToDo-UI/modules/1191970997" target="_blank">View Project</a>
+        </div>
+        <div class="project-card">
+            <h3>Pet Store-website</h3>
+            <p>Figma</p>
+            <a href="https://www.behance.net/gallery/213599587/Store-website-UI/modules/1215122269" target="_blank">View Project</a>
+        </div>
+        <div class="project-card">
+            <h3>Store-website</h3>
+            <p>Figma</p>
+            <a href="https://www.behance.net/gallery/214753751/website-uiux/modules/1222222573" target="_blank">View Project</a>
+        </div>
+        <div class="project-card">
+            <h3>Airline-App</h3>
+            <p>Figma</p>
+            <a href="https://www.behance.net/gallery/209212789/JetUp-case-study-UIUX/modules/1188529973" target="_blank">View Project</a>
+        </div>
+        <div class="project-card">
+            <h3>Matching game</h3>
+            <p>HTML , CSS ,JavaScript</p>
+            <a href="https://mahaalthwab.github.io/Flipcard/" target="_blank">View Project</a>
+        </div>
+    </div>
+</div>
+
+</div>
+<div id="section4" class="section">
+    <div class="links-container">
+        <h1>More Of My Works</h1>
+        <div class="links">
+            <a href="https://github.com" target="_blank" class="link-item">GitHub</a>
+            <a href="https://www.behance.net/mahaalthwab1" target="_blank" class="link-item">Behance</a>
+            <a href="https://www.linkedin.com/in/maha-althawab-694050202/" target="_blank" class="link-item">LinkedIn</a>
+            <a href="https://mahaalthwab.github.io/maha34/" target="_blank" class="link-item">Blog</a>
+        </div>
+    </div>
+</div>
+
+
+<footer>
+    © 2025 <a href="https://www.linkedin.com/in/maha-althawab-694050202/" target="_blank">Maha Althwab</a>. All rights reserved.
+</footer>
+    <!-- تأثير التنقل السلس -->
+    <script>
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Add scroll animations for gallery images
+  gsap.utils.toArray(".project-card").forEach((item, index) => {
+    gsap.from(item, {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      scrollTrigger: {
+        trigger: item,
+        start: "top 80%",
+        end: "top 60%",
+        scrub: true,
+      }
+    });
+  });
+
+  gsap.utils.toArray("").forEach((item, index) => {
+    gsap.from(item, {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      scrollTrigger: {
+        trigger: item,
+        start: "top 80%",
+        end: "top 20%",
+        scrub: true,
+      }
+    });
+  });
+  gsap.utils.toArray("").forEach((item, index) => {
+    gsap.from(item, {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      scrollTrigger: {
+        trigger: item,
+        start: "top 80%",
+        end: "top 20%",
+        scrub: true,
+      }
+    });
+  });
+</script>
+</body>
+</html>
